@@ -11,8 +11,12 @@ client.connect((host,port))
 
 while True:
     user_input = raw_input('Please input something:').strip()
+    if len(user_input) == 0:continue
     client.send(user_input)
-    return_data = client.recv(1024)
-    print 'Receved:',return_data
+
+    #判断返回数据的大小并接收返回值
+    recv_size = client.recv(1024)
+    recv_data = client.recv(int(recv_size) )
+    print 'Receved:',recv_data
     
 client.close()
