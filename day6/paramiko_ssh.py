@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+ï»¿#!/usr/bin/env python
 # coding: UTF-8
 
 import paramiko
@@ -9,22 +9,22 @@ host = sys.argv[1]
 cmd = sys.argv[2]
 user = 'root'
 port = 22
-# Ë½Ô¿Â·¾¶
+# ç§é’¥è·¯å¾„
 pkey_file = '/home/luojianwei/.ssh/id_rsa'
 
-# °ó¶¨ÊµÀı
+# ç»‘å®šå®ä¾‹
 s = paramiko.SSHClient()
-# ¼ÓÔØ±¾»úHOSTÖ÷»úÎÄ¼ş
+# åŠ è½½æœ¬æœºHOSTä¸»æœºæ–‡ä»¶
 s.load_system_host_keys()
-# µÚÒ»´ÎÁ¬½ÓÄ¬ÈÏ½ÓÊÜÃÜÔ¿
+# ç¬¬ä¸€æ¬¡è¿æ¥é»˜è®¤æ¥å—å¯†é’¥
 s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-# ÃÜÔ¿ÈÏÖ¤
+# å¯†é’¥è®¤è¯
 key = paramiko.RSAKey.from_private_key_file(pkey_file)
-# Á¬½ÓÖ÷»ú
+# è¿æ¥ä¸»æœº
 s.connect(host,port,user,pkey=key,timeout=5)
-# Ö´ĞĞÃüÁî
+# æ‰§è¡Œå‘½ä»¤
 stdin,stdout,stderr = s.exec_command(cmd)
-# ·µ»ØÃüÁîÖ´ĞĞ½á¹û
+# è¿”å›å‘½ä»¤æ‰§è¡Œç»“æœ
 result = stdout.read(),stderr.read()
 
 for line in result:

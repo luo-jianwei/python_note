@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+ï»¿#!/usr/bin/env python
 # coding: UTF-8
 
 import paramiko
@@ -11,17 +11,17 @@ passwd = 'jianwei.com'
 
 cmd = sys.argv[2]
 
-# °ó¶¨ÊµÀı
+# ç»‘å®šå®ä¾‹
 s = paramiko.SSHClient()
-# ¼ÓÔØ±¾»úHOSTÖ÷»úÎÄ¼ş
+# åŠ è½½æœ¬æœºHOSTä¸»æœºæ–‡ä»¶
 s.load_system_host_keys()
-# µÚÒ»´ÎÁ¬½ÓÄ¬ÈÏ½ÓÊÜÃÜÔ¿
+# ç¬¬ä¸€æ¬¡è¿æ¥é»˜è®¤æ¥å—å¯†é’¥
 s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-# Á¬½ÓÔ¶³ÌÖ÷»ú
+# è¿æ¥è¿œç¨‹ä¸»æœº
 s.connect(host,22,user,passwd,timeout=5)
-# Ö´ĞĞÃüÁî
+# æ‰§è¡Œå‘½ä»¤
 stdin,stdout,stderr = s.exec_command(cmd)
-# ¶ÁÈ¡ÃüÁî½á¹û
+# è¯»å–å‘½ä»¤ç»“æœ
 cmd_result = stdout.read(),stderr.read()
 
 for line in cmd_result:
